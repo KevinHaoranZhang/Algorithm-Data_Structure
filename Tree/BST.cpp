@@ -75,6 +75,41 @@ void BST::inorder_iterative(BST* root) {
     }
 }
 
+/* Recursively traverse a BST, Post-order */
+void BST::postorder_recursive(BST* root) {
+    if (root == NULL) {
+        return;
+    }
+    postorder_recursive(root->left);
+    postorder_recursive(root->right);
+    std::cout << root->data << std::endl;
+
+}
+/* Iteratively traverse a BST, in-order */
+void BST::postorder_iterative(BST* root) {
+    // using stack
+    std::stack<BST*> node_stack;
+    std::stack<BST*> output_stack;
+    // backup root
+    BST* cur = root;
+    node_stack.push(cur);
+    while (!node_stack.empty()) {
+        cur = node_stack.top();
+        node_stack.pop();
+        output_stack.push(cur);
+        if (cur->left != NULL) {
+            node_stack.push(cur->left);
+        }
+        if (cur->right != NULL) {
+            node_stack.push(cur->right);
+        }
+    }
+    while (!output_stack.empty()) {
+        std::cout << output_stack.top()->data << std::endl;
+        output_stack.pop();
+    }
+}
+
 /* Recursively insert a node */
 BST* BST::insert_recursive(BST* root, int data) {
     // if root is null, create a new root
@@ -90,13 +125,4 @@ BST* BST::insert_recursive(BST* root, int data) {
         root->left = insert_recursive(root->left, data);
     }
     return root;
-}
-
-/* Recursively traverse a BST, Post-order */
-void BST::Postorder_recursive(BST* root) {
-
-}
-/* Iteratively traverse a BST, in-order */
-void BST::Postorder_iterative(BST* root) {
-
 }

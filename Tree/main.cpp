@@ -18,5 +18,9 @@ int main() {
     b.inorder_recursive(root);
     std::cout << "Iterative in-order" << std::endl;
     b.inorder_iterative(root);
+    std::cout << "Recursive post-order" << std::endl;
+    b.postorder_recursive(root);
+    std::cout << "Iterative post-order" << std::endl;
+    b.postorder_iterative(root);
     return 0;
 }

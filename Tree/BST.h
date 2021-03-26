@@ -30,9 +30,9 @@ public:
 
     /* Post-order: left, right, node. Destructor sequence */
     /* Recursively traverse a BST, Post-order */
-    void Postorder_recursive(BST* root);
+    void postorder_recursive(BST* root);
     /* Iteratively traverse a BST, in-order */
-    void Postorder_iterative(BST* root);
+    void postorder_iterative(BST* root);
 
     /* Recursively insert a node */
     BST* insert_recursive(BST* root, int data);
