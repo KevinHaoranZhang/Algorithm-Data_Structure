@@ -3,13 +3,23 @@
 
 int main() {
     BST b, *root = NULL;
-    root = b.insert_recursive(root, 50);
-    b.insert_recursive(root, 30);
-    b.insert_recursive(root, 20);
-    b.insert_recursive(root, 40);
-    b.insert_recursive(root, 70);
-    b.insert_recursive(root, 60);
-    b.insert_recursive(root, 80);
+    // recursive insertion
+//    root = b.insert_recursive(root, 50);
+//    b.insert_recursive(root, 30);
+//    b.insert_recursive(root, 20);
+//    b.insert_recursive(root, 40);
+//    b.insert_recursive(root, 70);
+//    b.insert_recursive(root, 60);
+//    b.insert_recursive(root, 80);
+
+    // iterative insertion
+    root = b.insert_iterative(root, 50);
+    b.insert_iterative(root, 30);
+    b.insert_iterative(root, 20);
+    b.insert_iterative(root, 40);
+    b.insert_iterative(root, 70);
+    b.insert_iterative(root, 60);
+    b.insert_iterative(root, 80);
     std::cout << "Recursive pre-order" << std::endl;
     b.preorder_recursive(root);
     std::cout << "Iterative pre-order" << std::endl;

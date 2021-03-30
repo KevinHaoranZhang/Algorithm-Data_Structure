@@ -34,8 +34,12 @@ public:
     /* Iteratively traverse a BST, in-order */
     void postorder_iterative(BST* root);
 
+    /* Node insertion */
+
     /* Recursively insert a node */
     BST* insert_recursive(BST* root, int data);
+    /* Iteratively insert a node */
+    BST* insert_iterative(BST* root, int data);
 };
 
 #endif //TREE_BST_H

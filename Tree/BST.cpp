@@ -126,3 +126,31 @@ BST* BST::insert_recursive(BST* root, int data) {
     }
     return root;
 }
+
+/* Iteratively insert a node */
+BST* BST::insert_iterative(BST* root, int data) {
+    // create a pointer to the new node
+    BST* new_node = new BST(data);
+    // backup root
+    BST* cur = root;
+    // store prev
+    BST* prev = cur;
+    while (cur != NULL) {
+        prev = cur;
+        // insertion on right subtree
+        if (data > cur->data) {
+            cur = cur->right;
+        } else {
+            // insertion on left subtree
+            cur = cur->left;
+        }
+    }
+    if (prev == NULL) {
+        root = new_node;
+    } else if (data > prev->data) {
+        prev->right = new_node;
+    } else {
+        prev->left = new_node;
+    }
+    return root;
+}
