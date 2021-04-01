@@ -154,3 +154,35 @@ BST* BST::insert_iterative(BST* root, int data) {
     }
     return root;
 }
+
+/* Recursively search a key */
+BST* BST::search_recursive(BST* root, int data) {
+    // base conditon: root is null or root contains data
+    if (root == NULL || root->data == data) {
+        return root;
+    }
+    // search for right subtree
+    if (data > root->data) {
+        return search_recursive(root->right, data);
+    }
+    // search for left subtree
+    return search_recursive(root->left, data);
+}
+
+/* Iteratively search a key */
+BST* BST::search_iterative(BST* root, int data) {
+    // back up root
+    BST* cur = root;
+    while (cur != NULL) {
+        // search right subtree
+        if (data > cur->data) {
+            cur = cur->right;
+        } else if (data < cur->data) { // search left subtree
+            cur = cur->left;
+        } else { // found data
+            return cur;
+        }
+    }
+    return NULL;
+}
+

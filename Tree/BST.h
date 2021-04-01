@@ -34,12 +34,19 @@ public:
     /* Iteratively traverse a BST, in-order */
     void postorder_iterative(BST* root);
 
-    /* Node insertion */
+    /* Insertion: return root */
 
     /* Recursively insert a node */
     BST* insert_recursive(BST* root, int data);
     /* Iteratively insert a node */
     BST* insert_iterative(BST* root, int data);
+
+    /* Search: if found, return node; else, return NULL */
+
+    /* Recursively search a key */
+    BST* search_recursive(BST* root, int data);
+    /* Iteratively search a key */
+    BST* search_iterative(BST* root, int data);
 };
 
 #endif //TREE_BST_H

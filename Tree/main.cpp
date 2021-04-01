@@ -32,5 +32,21 @@ int main() {
     b.postorder_recursive(root);
     std::cout << "Iterative post-order" << std::endl;
     b.postorder_iterative(root);
+    std::cout << "Recursively search for existing value 50" << std::endl;
+    if (b.search_recursive(root, 50) != NULL) {
+        std::cout << "Found 50" << std::endl;
+    }
+    std::cout << "Recursively search for non-existing value 100" << std::endl;
+    if (b.search_recursive(root, 100) == NULL) {
+        std::cout << "Not Found 100" << std::endl;
+    }
+    std::cout << "Iteratively search for existing value 50" << std::endl;
+    if (b.search_iterative(root, 50) != NULL) {
+        std::cout << "Found 50" << std::endl;
+    }
+    std::cout << "Iteratively search for non-existing value 100" << std::endl;
+    if (b.search_iterative(root, 100) == NULL) {
+        std::cout << "Not Found 100" << std::endl;
+    }
     return 0;
 }
