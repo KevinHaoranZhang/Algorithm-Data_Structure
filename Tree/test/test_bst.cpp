@@ -37,6 +37,24 @@ BST* BST_test::build_bst_recursive() {
     return root;
 }
 
+TEST_F(BST_test, traversal) {
+    BST* root = build_bst_iterative();
+    root->preorder_iterative(root);
+    root->preorder_recursive(root);
+    root->inorder_iterative(root);
+    root->inorder_recursive(root);
+    root->postorder_iterative(root);
+    root->postorder_recursive(root);
+}
+
+TEST_F(BST_test, height) {
+    BST* root = NULL;
+    EXPECT_EQ(0, root->height_recurisve(root));
+    EXPECT_EQ(0, root->height_iterative(root));
+    root = build_bst_iterative();
+    EXPECT_EQ(3, root->height_recurisve(root));
+    EXPECT_EQ(3, root->height_iterative(root));
+}
 TEST_F(BST_test, insertion) {
     // test for iterative insertion
     BST* root_recursive = build_bst_recursive();
@@ -72,12 +90,4 @@ TEST_F(BST_test, search) {
     EXPECT_EQ(NULL, root->search_iterative(root, 1));
 }
 
-TEST_F(BST_test, traversal) {
-    BST* root = build_bst_iterative();
-    root->preorder_iterative(root);
-    root->preorder_recursive(root);
-    root->inorder_iterative(root);
-    root->inorder_recursive(root);
-    root->postorder_iterative(root);
-    root->postorder_recursive(root);
-}
+

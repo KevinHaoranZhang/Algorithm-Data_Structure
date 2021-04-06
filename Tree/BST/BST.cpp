@@ -1,6 +1,7 @@
 #include "BST.h"
 #include <iostream>
 #include <stack>
+#include <queue>
 
 /* Default constructor */
 BST::BST() : data(0), left(NULL), right(NULL) {}
@@ -107,6 +108,51 @@ void BST::postorder_iterative(BST* root) {
     while (!output_stack.empty()) {
         std::cout << output_stack.top()->data << std::endl;
         output_stack.pop();
+    }
+}
+
+/* Recursively find the height of a bst */
+int BST::height_recurisve(BST* root) {
+    if (root == NULL) {
+        return 0;
+    }
+    int left_height = height_recurisve(root->left);
+    int right_height = height_recurisve(root->right);
+    if (left_height > right_height) {
+        return left_height + 1;
+    } else {
+        return right_height + 1;
+    }
+}
+
+/* Iteratively find the height of a bst */
+int BST::height_iterative(BST* root) {
+    // base condition
+    if (root == NULL) {
+        return 0;
+    }
+    // use queue to do level order traversal
+    std::queue<BST*> level_queue;
+    level_queue.push(root);
+    int height = 0;
+    while (1) {
+        int cur_level_size = level_queue.size();
+        if (cur_level_size == 0) {
+            return height;
+        }
+        height++;
+        // dequeue all nodes at current level
+        // enqueue all nodes at the next level
+        while (cur_level_size--) {
+            BST* cur_node = level_queue.front();
+            level_queue.pop();
+            if (cur_node->left != NULL) {
+                level_queue.push(cur_node->left);
+            }
+            if (cur_node->right != NULL) {
+                level_queue.push(cur_node->right);
+            }
+        }
     }
 }
 
