@@ -2,12 +2,82 @@
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <vector>
+#include <math.h>
 
 /* Default constructor */
 BST::BST() : data(0), left(NULL), right(NULL) {}
 
 /* Parametrized constructor */
 BST::BST(int data) : data(data), left(NULL), right(NULL) {}
+
+/* Print white space given number */
+void print_white_space(int num) {
+    for (int i = 0; i < num; i++) {
+        std::cout << " ";
+    }
+}
+
+/* Print the full structure of a bst */
+void BST::print_bst(BST *root) {
+    int height = height_iterative(root);
+    std::queue<BST*> node_queue;
+    node_queue.push(root);
+    // get the maximum value of the bst
+    int max_value = 0;
+    BST* cur = root;
+    while (cur != NULL) {
+        max_value = cur->data;
+        cur = cur->right;
+    }
+    // calcuate the digit of max value, set it as basic unit
+    int unit = 0;
+    while (max_value) {
+        unit++;
+        max_value /= 10;
+    }
+    // the number of units needed for the last level
+    int max_unit_size = pow(2, height) * 2 - 1;
+    for (int level = 1; level <= height; level++) {
+        int level_node_num = node_queue.size();
+        std::vector<int> level_node_value;
+        // store current level nodes' data and next level nodes
+        while(level_node_num--) {
+            BST* cur_node = node_queue.front();
+            node_queue.pop();
+            if (cur_node != NULL) {
+                level_node_value.push_back(cur_node->data);
+                node_queue.push(cur_node->left);
+                node_queue.push(cur_node->right);
+            } else {
+                level_node_value.push_back(-1);
+                node_queue.push(NULL);
+                node_queue.push(NULL);
+            }
+        }
+
+        // calculate front white space and middle white space size
+        int middle_space = max_unit_size / pow(2, level);
+        int front_space = (max_unit_size - middle_space * (pow(2, level) - 1) - pow(2, level)) / pow(2, level);
+//        std::cout << "middle_space " << middle_space << std::endl;
+//        std::cout << "front_space " << front_space << std::endl;
+        print_white_space(front_space * unit);
+        if (level_node_value[0] != -1) {
+            std::cout << level_node_value[0];
+        } else {
+            print_white_space(unit);
+        }
+        for (int i = 1; i < level_node_value.size(); i++) {
+            print_white_space(middle_space * unit);
+            if (level_node_value[i] != -1) {
+                std::cout << level_node_value[i];
+            } else {
+                print_white_space(unit);
+            }
+        }
+        std::cout << std::endl;
+    }
+}
 
 /* Recursively traverse a BST, pre-order */
 void BST::preorder_recursive(BST* root) {

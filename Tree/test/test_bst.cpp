@@ -47,6 +47,11 @@ BST* BST_test::build_bst_recursive() {
     return root;
 }
 
+TEST_F(BST_test, print) {
+    BST* root = build_bst_iterative();
+    root->print_bst(root);
+}
+
 TEST_F(BST_test, traversal) {
     BST* root = build_bst_iterative();
     std::cout << "Pre-order traversal, iterative" << std::endl;
@@ -115,5 +120,3 @@ TEST_F(BST_test, search) {
     EXPECT_EQ(NULL, root->search_iterative(root, 100));
     EXPECT_EQ(NULL, root->search_iterative(root, 1));
 }
-
-

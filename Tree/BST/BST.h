@@ -19,17 +19,17 @@ public:
 
     /* Traversal: pre-order, in-order, post-order */
 
-    /* In-order: left, node, right. Print sorted data in ascending order */
-    /* Recursively traverse a BST, in-order */
-    void inorder_recursive(BST* root);
-    /* Iteratively traverse a BST, in-order */
-    void inorder_iterative(BST* root);
-
     /* Pre-order: node, left, right. Constructor sequence */
     /* Recursively traverse a BST, pre-order */
     void preorder_recursive(BST* root);
     /* Iteratively traverse a BST, pre-order */
     void preorder_iterative(BST* root);
+
+    /* In-order: left, node, right. Print sorted data in ascending order */
+    /* Recursively traverse a BST, in-order */
+    void inorder_recursive(BST* root);
+    /* Iteratively traverse a BST, in-order */
+    void inorder_iterative(BST* root);
 
     /* Post-order: left, right, node. Destructor sequence */
     /* Recursively traverse a BST, Post-order */
