@@ -120,3 +120,9 @@ TEST_F(BST_test, search) {
     EXPECT_EQ(NULL, root->search_iterative(root, 100));
     EXPECT_EQ(NULL, root->search_iterative(root, 1));
 }
+
+TEST_F(BST_test, delete) {
+    BST* root = build_bst_iterative();
+    // test for recursive delete
+    root->delete_recursive(root, 20);
+}

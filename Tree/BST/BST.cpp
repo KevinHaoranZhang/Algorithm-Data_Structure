@@ -59,8 +59,6 @@ void BST::print_bst(BST *root) {
         // calculate front white space and middle white space size
         int middle_space = max_unit_size / pow(2, level);
         int front_space = (max_unit_size - middle_space * (pow(2, level) - 1) - pow(2, level)) / pow(2, level);
-//        std::cout << "middle_space " << middle_space << std::endl;
-//        std::cout << "front_space " << front_space << std::endl;
         print_white_space(front_space * unit);
         if (level_node_value[0] != -1) {
             std::cout << level_node_value[0];
@@ -302,3 +300,41 @@ BST* BST::search_iterative(BST* root, int data) {
     return NULL;
 }
 
+/* Recursively delete a key */
+BST* BST::delete_recursive(BST* root, int data) {
+    // base case
+    if (root == NULL) {
+        return root;
+    }
+    // iterate over left subtree
+    if (data < root->data) {
+        root->left = delete_recursive(root->left, data);
+    } else if (data > root->data) { // iterate over right subtree
+        root->right = delete_recursive(root->right, data);
+    } else { // delete the key
+        // no children
+        if (root->left == NULL && root->right == NULL) {
+            return NULL;
+        } else if (root->left == NULL) { // has only right child
+            BST* temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) { // has only left child
+            BST* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // has two children, replace it with the minimum value from right subtree, and delete the replaced node
+        // find the minimum value from right subtree
+        BST* min_node = root->right;
+        while (min_node && min_node->left != NULL) {
+            min_node = min_node->left;
+        }
+        // replace the value of the current node
+        root->data = min_node->data;
+        // delete the replaced node
+        root->right = delete_recursive(root->right, min_node->data);
+    }
+    return root;
+}

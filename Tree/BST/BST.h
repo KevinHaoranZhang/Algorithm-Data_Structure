@@ -58,6 +58,10 @@ public:
     /* Iteratively search a key */
     BST* search_iterative(BST* root, int data);
 
+    /* Delete: delete a key */
+
+    /* Recursively delete a key */
+    BST* delete_recursive(BST* root, int data);
 
 };
 
