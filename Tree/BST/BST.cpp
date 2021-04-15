@@ -338,3 +338,56 @@ BST* BST::delete_recursive(BST* root, int data) {
     }
     return root;
 }
+
+/* Iteratively delete a key */
+BST* BST::delete_iterative(BST* root, int data) {
+    // check if key exits
+    BST* cur = root;
+    BST* key_prev = NULL;
+    while (cur != NULL && cur->data != data) {
+        key_prev = cur;
+        if (cur->data < data) {
+            cur = cur->right;
+        } else {
+            cur = cur->left;
+        }
+    }
+    if (cur == NULL) {
+        return root;
+    }
+    // has at most one child
+    if (cur->left == NULL || cur->right == NULL) {
+        BST* temp = NULL;
+        if (cur->left == NULL) {
+            temp = cur->right;
+        } else {
+            temp = cur->left;
+        }
+        // if the node to be deleted is the root
+        if (key_prev == NULL) {
+            return temp;
+        }
+        if (cur == key_prev->left) {
+            key_prev->left = temp;
+        } else {
+            key_prev->right = temp;
+        }
+        free(cur);
+    } else { // has two children
+        BST* succ_prev = NULL;
+        // find the inorder successor
+        BST* temp = cur->right;
+        while (temp->left != NULL) {
+            succ_prev = temp;
+            temp = temp->left;
+        }
+        if (succ_prev != NULL) {
+            succ_prev->left = temp->right;
+        } else {
+            cur->right = temp->right;
+        }
+        cur->data = temp->data;
+        free(temp);
+    }
+    return root;
+}

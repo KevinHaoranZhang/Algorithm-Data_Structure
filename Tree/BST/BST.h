@@ -62,7 +62,8 @@ public:
 
     /* Recursively delete a key */
     BST* delete_recursive(BST* root, int data);
-
+    /* Iteratively delete a key */
+    BST* delete_iterative(BST* root, int data);
 };
 
 #endif //TREE_BST_H

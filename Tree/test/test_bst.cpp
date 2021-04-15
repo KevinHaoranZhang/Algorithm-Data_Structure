@@ -122,7 +122,32 @@ TEST_F(BST_test, search) {
 }
 
 TEST_F(BST_test, delete) {
-    BST* root = build_bst_iterative();
+    BST* root_recursive = build_bst_iterative();
+    BST* root_iterative = build_bst_iterative();
     // test for recursive delete
-    root->delete_recursive(root, 20);
+    root_recursive->delete_recursive(root_recursive, 20);
+    EXPECT_EQ(15, root_recursive->data);
+    EXPECT_EQ(13, root_recursive->left->data);
+    EXPECT_EQ(12, root_recursive->left->left->data);
+    EXPECT_EQ(10, root_recursive->left->left->left->data);
+    EXPECT_EQ(9, root_recursive->left->left->left->left->data);
+    EXPECT_EQ(11, root_recursive->left->left->left->right->data);
+    EXPECT_EQ(14, root_recursive->left->right->data);
+    EXPECT_EQ(21, root_recursive->right->data);
+    EXPECT_EQ(18, root_recursive->right->left->data);
+    EXPECT_EQ(22, root_recursive->right->right->data);
+    EXPECT_EQ(23, root_recursive->right->right->right->data);
+    // test for recursive delete
+    root_iterative->delete_iterative(root_iterative, 20);
+    EXPECT_EQ(15, root_iterative->data);
+    EXPECT_EQ(13, root_iterative->left->data);
+    EXPECT_EQ(12, root_iterative->left->left->data);
+    EXPECT_EQ(10, root_iterative->left->left->left->data);
+    EXPECT_EQ(9, root_iterative->left->left->left->left->data);
+    EXPECT_EQ(11, root_iterative->left->left->left->right->data);
+    EXPECT_EQ(14, root_iterative->left->right->data);
+    EXPECT_EQ(21, root_iterative->right->data);
+    EXPECT_EQ(18, root_iterative->right->left->data);
+    EXPECT_EQ(22, root_iterative->right->right->data);
+    EXPECT_EQ(23, root_iterative->right->right->right->data);
 }
