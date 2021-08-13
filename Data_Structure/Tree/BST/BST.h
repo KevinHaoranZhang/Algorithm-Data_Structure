@@ -9,7 +9,7 @@ public:
 
     /* Default constructor */
     BST();
-    /* Parametrized constructor */
+    /* Parameterized constructor */
     BST(int data);
 
     /* Utility functions */

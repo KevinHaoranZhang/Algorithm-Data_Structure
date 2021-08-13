@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "../BST/BST.h"
+#include "../Tree/BST/BST.h"
 #include <string>
 #include <iostream>
 

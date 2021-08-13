@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.6)
-project(Tree)
+project(Data_Structure)
 
 set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(lib/googletest)
 include_directories(lib/googletest/googletest/include)
 include_directories(lib/googletest/googlemock/include)
 
-set(SOURCE_FILES main.cpp BST/BST.cpp BST/BST.h test/test_bst.cpp)
-add_executable(Tree ${SOURCE_FILES})
-target_link_libraries(Tree gtest gtest_main)
+set(SOURCE_FILES main.cpp Tree/BST/BST.cpp Tree/BST/BST.h Test/test_bst.cpp)
+add_executable(Data_Structure ${SOURCE_FILES})
+target_link_libraries(Data_Structure gtest gtest_main)
