@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 
-
 using testing::Eq;
 
 class BST_test : public testing::Test {
